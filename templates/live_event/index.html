@@ -1,0 +1,30 @@
+{% extends 'common/base.html'%}
+
+{%  block content %}
+
+    <!-- submit -->
+    <form action="{% url 'live_event:submit' %}" method="post">
+        {% csrf_token %}
+        <label>Event Name: </label><input type="text" name="txt_event_name"><br>
+        <label>Event Tags: </label><input type="text" name="txt_event_tags">
+        <input type="submit" value="Ok">
+    </form><br>
+
+    <!-- recent list -->
+    {% if event_list %}
+        <h4>All Events:</h4>
+        <ul>
+            {% for event in event_list %}
+                <li><a href="{% url 'live_event:live' event.pk %}">{{ event.event_name }}</a> </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There's nothing here.</p>
+    {% endif %}
+
+    <br>
+    {% if error_msg %}
+        <p>{{ error_msg }}</p>
+    {% endif %}
+
+{% endblock %}

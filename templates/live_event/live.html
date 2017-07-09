@@ -1,0 +1,35 @@
+{% extends 'common/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    {% if event %}
+        <ul>
+            <li>{{ event.event_name }}</li>
+        </ul>
+    {% else %}
+        <p>Opps! nothing here.</p>
+    {% endif %}
+{% endblock %}
+
+
+{% block script %}
+    {% if event %}
+        {# <script type="text/javascript" src="{% static 'live_event/js/open_socket.js' %}?django_event_id={{  event.pk }}"></script>#}
+        <script>
+            var socket = new WebSocket('ws://' + window.location.host + '/live/{{ event.pk }}');
+
+            socket.onmessage = function (e) {
+                alert(e.data);
+            };
+
+            socket.onopen = function open() {
+                console.log('WebSockets connection created.');
+                socket.send("New user connected to '{{ event.event_name }}'");
+            };
+
+            if (socket.readyState == WebSocket.OPEN) {
+                socket.onopen();
+            }
+        </script>
+    {% endif %}
+{% endblock script %}
