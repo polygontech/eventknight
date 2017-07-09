@@ -1,5 +1,5 @@
 from channels import Group
-from .models import Event
+from eventknight_engine.models import Event
 from django.core.exceptions import ObjectDoesNotExist
 
 

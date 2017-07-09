@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from .models import Event, User
+from eventknight_engine.models import Event, User
 
 
 # Views Definitions

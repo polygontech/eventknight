@@ -6,3 +6,4 @@ app_name = 'base'
 urlpatterns = [
     url(r'^$', views.index, name='index'),  # root
 ]
+
