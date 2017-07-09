@@ -9,23 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'common/css/style.css' %}"/>
 </head>
 <body>
-<nav class="navbar navbar-inverse bg-faded">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'live_event:index' %}">
-                <span class="glyphicon glyphicon-knight" aria-hidden="true"></span>&nbsp;
-                eventknight
-            </a>
-        </div>
-    </div>
 
-</nav>
-
+{% block navbar %}{% endblock %}
 {% block content %}{% endblock %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -1,7 +1,10 @@
 {% extends 'common/base.html'%}
 
-{%  block content %}
+{% block navbar %}
+    {% include "common/navbar.html" %}
+{% endblock %}
 
+{%  block content %}
     <!-- submit -->
     <form action="{% url 'live_event:submit' %}" method="post">
         {% csrf_token %}
@@ -26,5 +29,4 @@
     {% if error_msg %}
         <p>{{ error_msg }}</p>
     {% endif %}
-
 {% endblock %}
