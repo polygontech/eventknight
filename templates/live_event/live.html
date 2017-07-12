@@ -6,6 +6,20 @@
         <ul>
             <li>{{ event.event_name }}</li>
         </ul>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div style='min-height: 200px; max-width: 800px; overflow-y: scroll;border:1px solid #f2f2f2;'>
+                    <div class="accordion" id="tweets-list-accordian">
+
+                        <div class="accordion-section">
+                            <a class="accordion-section-title">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     {% else %}
         <p>Opps! nothing here.</p>
     {% endif %}
@@ -14,18 +28,21 @@
 
 {% block script %}
     {% if event %}
-        {# <script type="text/javascript" src="{% static 'live_event/js/open_socket.js' %}?django_event_id={{  event.pk }}"></script>#}
         <script>
             var socket = new WebSocket('ws://' + window.location.host + '/live/{{ event.pk }}');
 
             socket.onmessage = function (e) {
-                alert(e.data);
+                //alert(e.data);
+                $('#tweets-list-accordian').append({
+                    '<div class="accordion-section"><a class="accordion-section-title" style="font-size:14px;">' +e.data + '</a></div>'
+                });
             };
 
             socket.onopen = function open() {
                 console.log('WebSockets connection created.');
                 socket.send("New user connected to '{{ event.event_name }}'");
             };
+
 
             if (socket.readyState == WebSocket.OPEN) {
                 socket.onopen();
