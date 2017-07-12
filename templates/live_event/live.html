@@ -32,10 +32,10 @@
             var socket = new WebSocket('ws://' + window.location.host + '/live/{{ event.pk }}');
 
             socket.onmessage = function (e) {
-                //alert(e.data);
-                $('#tweets-list-accordian').append({
-                    '<div class="accordion-section"><a class="accordion-section-title" style="font-size:14px;">' +e.data + '</a></div>'
-                });
+                alert(e.data);
+                {% comment %}$('#tweets-list-accordian').append(
+                    "<div class="accordion-section"><a class="accordion-section-title" style="font-size:14px;">' + e.data + '</a></div>"
+                );{% endcomment %}
             };
 
             socket.onopen = function open() {
