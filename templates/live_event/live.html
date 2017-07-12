@@ -8,7 +8,7 @@
         </ul>
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-                <div style='min-height: 200px; max-width: 800px; overflow-y: scroll;border:1px solid #f2f2f2;'>
+                <div style='min-height: 200px; min-width: 250px; overflow-y: scroll;border:1px solid #f2f2f2;'>
                     <div class="accordion" id="tweets-list-accordian">
 
                         <div class="accordion-section">
@@ -32,10 +32,10 @@
             var socket = new WebSocket('ws://' + window.location.host + '/live/{{ event.pk }}');
 
             socket.onmessage = function (e) {
-                alert(e.data);
-                {% comment %}$('#tweets-list-accordian').append(
-                    "<div class="accordion-section"><a class="accordion-section-title" style="font-size:14px;">' + e.data + '</a></div>"
-                );{% endcomment %}
+                //alert(e.data);
+                $('#tweets-list-accordian').append(
+                    '<div class="accordion-section"><a class="accordion-section-title" style="font-size:14px;">' + e.data + '</a></div>'
+                );
             };
 
             socket.onopen = function open() {
