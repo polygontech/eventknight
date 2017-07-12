@@ -112,7 +112,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('localhost', 6379)],
+            'hosts': [(redis_host, 6379)],
         },
         'ROUTING': 'live_event.routing.channel_routing',
     }
